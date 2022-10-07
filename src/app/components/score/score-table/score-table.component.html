@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <th>Player</th>
+    <th colspan="2" *ngFor="let round of rounds">{{ round }}</th>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let score of scores">
+      <tr>
+        <td rowspan="2">{{ score.player }}</td>
+        <ng-container *ngFor="let round of score.rounds">
+          <td *ngFor="let points of round">{{ points }}</td>
+        </ng-container>
+      </tr>
+      <tr>
+        <ng-container *ngFor="let round of score.rounds">
+          <td colspan="2">{{ getTotal(round) }}</td>
+        </ng-container>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
