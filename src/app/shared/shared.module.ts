@@ -7,6 +7,6 @@ import { SubscriptionBaseComponent } from './components/subscription-base/subscr
 @NgModule({
   declarations: [SubscriptionBaseComponent],
   imports: [CommonModule, ReactiveFormsModule, MaterialModule],
-  exports: [CommonModule, SubscriptionBaseComponent],
+  exports: [CommonModule, SubscriptionBaseComponent, ReactiveFormsModule, MaterialModule],
 })
 export class SharedModule {}

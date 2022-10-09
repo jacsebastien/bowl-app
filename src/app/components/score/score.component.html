@@ -1,1 +1,10 @@
+<app-score-form
+  *ngFor="let score of scores; index as i"
+  [playerName]="score.player"
+  [scoreIndex]="i"
+></app-score-form>
 <app-score-table></app-score-table>
+
+<section class="actions">
+  <button mat-raised-button color="primary" (click)="onReset()">Nouvelle partie</button>
+</section>

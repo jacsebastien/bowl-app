@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class PlayersService {
-  private _players: string[] = ['Player 1'];
+  private _players: string[] = [];
 
   get players(): string[] {
     return this._players;
