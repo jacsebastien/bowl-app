@@ -41,9 +41,6 @@ tbody {
   tr:first-child {
     border-bottom: $table-border;
   }
-  td:first-child:not(:last-child) {
-    border-right: $table-border;
-  }
 }
 
 @media screen and (min-width: 780px) {

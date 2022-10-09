@@ -40,8 +40,14 @@ export class ScoresService {
     }
 
     const updatedPoints: number[] =
-      scoreToAdd === 10 ? [scoreToAdd, 0] : [...roundToUpdate.points, scoreToAdd];
+      scoreToAdd === 10 && !roundToUpdate.points.length
+        ? [scoreToAdd, 0]
+        : [...roundToUpdate.points, scoreToAdd];
     const updatedTotal: number | null = this.calculateRoundTotal(updatedPoints);
+
+    if (updatedTotal !== null && updatedTotal > 10) {
+      return;
+    }
 
     const updatedRound: Round = {
       points: updatedPoints,
