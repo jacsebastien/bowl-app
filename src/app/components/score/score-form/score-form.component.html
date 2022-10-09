@@ -1,17 +1,17 @@
 <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <mat-form-field class="example-full-width" appearance="fill">
+  <mat-form-field appearance="fill">
     <mat-label>{{ playerName }}</mat-label>
-    <!-- <input matInput placeholder="Ex. Pizza" value="Sushi" /> -->
     <input
       matInput
       [id]="controlKeys.points"
       [name]="controlKeys.points"
       [formControlName]="controlKeys.points"
+      [errorStateMatcher]="errorMatcher"
       type="number"
     />
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit" [disabled]="!this.form.valid">
-    Ajouter points
+  <button mat-mini-fab color="primary" type="submit" [disabled]="!this.form.valid">
+    <mat-icon aria-hidden="false" aria-label="Ajouter points" fontIcon="add"></mat-icon>
   </button>
 </form>

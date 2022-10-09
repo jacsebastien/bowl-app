@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayersService {
-  private _players: string[] = [];
+  private playersSubject = new BehaviorSubject<string[]>([]);
+  readonly playersObs = this.playersSubject.asObservable();
 
   get players(): string[] {
-    return this._players;
+    return this.playersSubject.getValue();
   }
 
-  create(name: string): void {
-    this._players.push(name);
-  }
+  create(newPlayer: string): void {
+    const updatedPlayers: string[] = [...this.players, newPlayer];
 
-  reset(): void {
-    this._players = [];
+    this.playersSubject.next(updatedPlayers);
   }
 }

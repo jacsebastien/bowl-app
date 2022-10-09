@@ -16,13 +16,14 @@ export class ScoresService {
 
   initScores(): void {
     const players: string[] = this.playersSrv.players;
+    const rounds: Round[] = Array.from({ length: this.numberOfRounds }, () => ({
+      points: [],
+      total: null,
+    }));
     const scores: Score[] = players.map((player) => ({
       player,
-      rounds: Array.from({ length: this.numberOfRounds }, () => ({
-        points: [],
-        total: null,
-      })),
-      total: null,
+      rounds,
+      total: 0,
     }));
     this.scoresSubject.next(scores);
   }
@@ -33,6 +34,11 @@ export class ScoresService {
 
     const roundIndex: number = playerRounds.findIndex((r) => r.points.length !== 2);
     const roundToUpdate: Round = playerRounds[roundIndex];
+
+    if (!roundToUpdate) {
+      return;
+    }
+
     const updatedPoints: number[] =
       scoreToAdd === 10 ? [scoreToAdd, 0] : [...roundToUpdate.points, scoreToAdd];
     const updatedTotal: number | null = this.calculateRoundTotal(updatedPoints);

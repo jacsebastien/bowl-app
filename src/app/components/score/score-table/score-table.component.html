@@ -1,4 +1,4 @@
-<table class="scores-table">
+<table class="main-table">
   <thead>
     <th>Joueur</th>
     <th *ngFor="let round of rounds">{{ round }}</th>
@@ -6,16 +6,18 @@
   </thead>
   <tbody>
     <tr *ngFor="let score of scores">
-      <td rowspan="2">{{ score.player }}</td>
-      <td *ngFor="let round of score.rounds">
-        <tr>
-          <td *ngFor="let points of round.points">{{ points }}</td>
-        </tr>
-        <tr>
-          <td colspan="2">{{ round.total }}</td>
-        </tr>
+      <td class="player">{{ score.player }}</td>
+      <td class="points" *ngFor="let round of score.rounds">
+        <table class="sub-table">
+          <tr>
+            <td *ngFor="let points of round.points">{{ points }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">{{ round.total }}</td>
+          </tr>
+        </table>
       </td>
-      <td rowspan="2">{{ score.total }}</td>
+      <td class="total">{{ score.total }}</td>
     </tr>
   </tbody>
 </table>

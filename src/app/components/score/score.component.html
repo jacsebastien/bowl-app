@@ -1,8 +1,10 @@
+<h2>Encodez vos points</h2>
 <app-score-form
-  *ngFor="let score of scores; index as i"
-  [playerName]="score.player"
+  *ngFor="let player of players; index as i"
+  [playerName]="player"
   [scoreIndex]="i"
 ></app-score-form>
+
 <app-score-table></app-score-table>
 
 <section class="actions">

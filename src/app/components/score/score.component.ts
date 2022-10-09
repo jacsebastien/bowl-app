@@ -11,12 +11,13 @@ import { ScoresService } from '../../shared/services/scores.service';
 })
 export class ScoreComponent extends SubscriptionBaseComponent implements OnInit {
   scores: Score[] = [];
+  players: string[] = [];
+
   constructor(private playersSrv: PlayersService, private scoresSrv: ScoresService) {
     super();
   }
 
   ngOnInit(): void {
-    this.playersSrv.create('Joueur 1');
     this.scoresSrv.initScores();
     this.initSubscriptions();
   }
@@ -29,6 +30,11 @@ export class ScoreComponent extends SubscriptionBaseComponent implements OnInit 
     this.addSubscription(
       this.scoresSrv.scoresObs.subscribe((scores) => {
         this.scores = scores;
+      }),
+    );
+    this.addSubscription(
+      this.playersSrv.playersObs.subscribe((players) => {
+        this.players = players;
       }),
     );
   }
