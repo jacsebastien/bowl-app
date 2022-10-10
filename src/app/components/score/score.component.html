@@ -1,6 +1,7 @@
 <h2>Encodez vos points</h2>
+
 <app-score-form
-  *ngFor="let player of players; index as i"
+  *ngFor="let player of playersObs | async; index as i"
   [playerName]="player"
   [scoreIndex]="i"
 ></app-score-form>
@@ -8,5 +9,5 @@
 <app-score-table></app-score-table>
 
 <section class="actions">
-  <button mat-raised-button color="primary" (click)="onReset()">Nouvelle partie</button>
+  <button mat-raised-button color="primary" (click)="onInitScores()">Nouvelle partie</button>
 </section>

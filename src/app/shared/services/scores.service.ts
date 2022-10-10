@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Round } from '../models/round';
 import { Score } from '../models/score';
 import { PlayersService } from './players.service';
@@ -9,10 +9,14 @@ import { PlayersService } from './players.service';
 })
 export class ScoresService {
   private scoresSubject = new BehaviorSubject<Score[]>([]);
-  readonly scoresObs = this.scoresSubject.asObservable();
+  readonly scoresObs: Observable<Score[]> = this.scoresSubject.asObservable();
   readonly numberOfRounds = 10;
 
   constructor(private playersSrv: PlayersService) {}
+
+  get scores(): Score[] {
+    return this.scoresSubject.getValue();
+  }
 
   initScores(): void {
     const players: string[] = this.playersSrv.players;
@@ -29,7 +33,7 @@ export class ScoresService {
   }
 
   addScore(indexToUpdate: number, scoreToAdd: number): void {
-    const scores: Score[] = this.scoresSubject.getValue();
+    const scores: Score[] = this.scores;
     const playerRounds: Round[] = scores[indexToUpdate].rounds || [];
 
     const roundIndex: number = playerRounds.findIndex((r) => r.points.length !== 2);

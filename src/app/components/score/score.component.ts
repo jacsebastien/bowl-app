@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SubscriptionBaseComponent } from '../../shared/components/subscription-base/subscription-base.component';
-import { Score } from '../../shared/models/score';
+import { Observable } from 'rxjs';
 import { PlayersService } from '../../shared/services/players.service';
 import { ScoresService } from '../../shared/services/scores.service';
 
@@ -9,33 +8,16 @@ import { ScoresService } from '../../shared/services/scores.service';
   templateUrl: './score.component.html',
   styleUrls: ['./score.component.scss'],
 })
-export class ScoreComponent extends SubscriptionBaseComponent implements OnInit {
-  scores: Score[] = [];
-  players: string[] = [];
+export class ScoreComponent implements OnInit {
+  playersObs: Observable<string[]> = this.playersSrv.playersObs;
 
-  constructor(private playersSrv: PlayersService, private scoresSrv: ScoresService) {
-    super();
-  }
+  constructor(private playersSrv: PlayersService, private scoresSrv: ScoresService) {}
 
   ngOnInit(): void {
-    this.scoresSrv.initScores();
-    this.initSubscriptions();
+    this.onInitScores();
   }
 
-  onReset(): void {
+  onInitScores(): void {
     this.scoresSrv.initScores();
-  }
-
-  private initSubscriptions(): void {
-    this.addSubscription(
-      this.scoresSrv.scoresObs.subscribe((scores) => {
-        this.scores = scores;
-      }),
-    );
-    this.addSubscription(
-      this.playersSrv.playersObs.subscribe((players) => {
-        this.players = players;
-      }),
-    );
   }
 }

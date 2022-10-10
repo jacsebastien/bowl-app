@@ -35,6 +35,7 @@ export class ScoreFormComponent implements OnInit {
 
   onSubmit(): void {
     const points: number = this.form?.value.points;
+
     if (this.scoreIndex !== null) {
       this.scoresSrv.addScore(this.scoreIndex, points);
       this.form?.reset();

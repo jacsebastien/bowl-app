@@ -2,11 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './modules/material.module';
-import { SubscriptionBaseComponent } from './components/subscription-base/subscription-base.component';
 
 @NgModule({
-  declarations: [SubscriptionBaseComponent],
+  declarations: [],
   imports: [CommonModule, ReactiveFormsModule, MaterialModule],
-  exports: [CommonModule, SubscriptionBaseComponent, ReactiveFormsModule, MaterialModule],
+  exports: [CommonModule, ReactiveFormsModule, MaterialModule],
 })
 export class SharedModule {}
