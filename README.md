@@ -4,16 +4,16 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Prerequisites
 
-You need Node.js installed on your machine, the project was created with Node.js v16.
+To be able to install and run the app you need Node.js and Angular CLI installed on your machine.
 
-You also need Angular CLI.
+The project was created with [Node.js v16 (LTS)](https://nodejs.org/en/).
 
-To install Angular CLI see the [Angular Documentation](https://angular.io/guide/setup-local).
+To install Angular CLI see the setup part of the [Angular Documentation](https://angular.io/guide/setup-local).
 
 ## Run the application
 
 In a new terminal, go to the project folder and type `npm install`.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
+Type `ng serve` to start the app, then navigate to `http://localhost:4200/`.
 
 Enjoy ! =)
